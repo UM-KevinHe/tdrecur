@@ -9,7 +9,7 @@ using namespace Rcpp;
 //' created on 12/11/2021: this one use stratified model
 
 // [[Rcpp::export]]
-List compute_facility_idx(IntegerVector &facility, int num_facility){
+List compute_facility_idx_ind(IntegerVector &facility, int num_facility){
             std::vector<std::vector<int> > facility_idx(num_facility);//C++ list
             for(int i=0; i<facility.size(); i++){
                 facility_idx[facility[i]].push_back(i);
@@ -24,7 +24,7 @@ List compute_facility_idx(IntegerVector &facility, int num_facility){
 //'@param D number of distinct failure time number of days)
 //'@param z time-independent variables
 // [[Rcpp::export]]
-List compute_d12(NumericMatrix &hosp_begin, IntegerVector &max_d, int D,
+List compute_d(NumericMatrix &hosp_begin, IntegerVector &max_d, int D,
 NumericMatrix &z,
 IntegerVector &facility, int num_facility){
 	  int N = hosp_begin.nrow();
@@ -64,7 +64,7 @@ IntegerVector &facility, int num_facility){
 //'@param ym number of changes on each day
 //'@param exp_z_beta vector of exp(zi * beta + alphai), length N, with repeated KECC_ID
 // [[Rcpp::export]]
-void ddloglik_cpp6(NumericVector &L1, NumericMatrix &L2,
+void ddloglik_cpp(NumericVector &L1, NumericMatrix &L2,
 NumericVector &S0, IntegerVector &t_start, IntegerVector &t_end, NumericVector &Sm,
 IntegerMatrix events_per_day_facility,
 NumericVector& exp_z_beta, NumericMatrix& z,
@@ -162,7 +162,7 @@ arma::colvec &beta, List facility_idx){
 //'@param num_events total number of events
 //'@param O number of events by facility
 // [[Rcpp::export]]
-void update_beta(NumericVector &L1, NumericMatrix &L2,
+void update_beta_ind(NumericVector &L1, NumericMatrix &L2,
 NumericVector &S0, NumericVector &Sm,
 IntegerVector &t_start, IntegerVector &t_end,
 IntegerMatrix events_per_day_facility,
@@ -176,7 +176,7 @@ int D, int N, List facility_idx){
     	  }
 
         // first step: update beta
-        ddloglik_cpp6(L1, L2, S0, t_start, t_end, Sm, events_per_day_facility,
+        ddloglik_cpp(L1, L2, S0, t_start, t_end, Sm, events_per_day_facility,
         exp_z_beta0, z, beta, facility_idx);
 
         update = arma::solve(as<arma::mat>(L2) + arma::eye(p, p) * 1e-6, as<arma::colvec>(L1),
@@ -449,8 +449,8 @@ int num_facility, int D, arma::colvec beta){
     int N = hosp_begin.nrow();
     //arma::colvec beta = arma::zeros<arma::colvec>(p); //beta not change back to 0 each iteration;
 
-    List result = compute_d12(hosp_begin, max_d, D, z, facility, num_facility);
-    List facility_idx = compute_facility_idx(facility, num_facility);
+    List result = compute_d(hosp_begin, max_d, D, z, facility, num_facility);
+    List facility_idx = compute_facility_idx_ind(facility, num_facility);
 
     NumericVector Sm = result("Sm");
     IntegerMatrix events_per_day_facility = result("events_per_day_facility");
@@ -481,7 +481,7 @@ int num_facility, int D, arma::colvec beta){
     //cout<<"this is shr12"<<endl;
     while ((abs(update).max() > tolb) & (iter < maxiter)) {
 
-        update_beta(L1, L2,
+        update_beta_ind(L1, L2,
         S0, Sm, t_start, t_end, events_per_day_facility,
         exp_z_beta0, z, beta,
         update, z_beta, facility, num_facility,
