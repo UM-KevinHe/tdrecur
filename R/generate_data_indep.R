@@ -7,6 +7,7 @@
 #'@param gamma true facility effects of each facility, notice length of gamma must be the same as length of F_pre
 #'@param dmu0 a constant for baseline rate
 #'@param ndays number of days followed
+#'@param seed random seed
 #'@param mean_sample_size expected sample size of each facility (stratum), a scalar same in all facilities
 #'@param Sigma_z1 Var-Cov matrix of design matrix
 #'@param censoring_up_bound maximum value that the censoring time can take

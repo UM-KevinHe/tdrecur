@@ -8,7 +8,7 @@ compute_facility_idx <- function(facility, num_facility) {
     .Call('_tdrecur_compute_facility_idx', PACKAGE = 'tdrecur', facility, num_facility)
 }
 
-#' this function calculates Sm (1 by p), sum of z in event set; O, the vector of total events in each 
+#' this function calculates Sm (1 by p), sum of z in event set; O, the vector of total events in each
 #' facility; num_events, number of all events; events_per_day_facility, number of events each day in each facility
 #'@param hosp_begin matrix of hospitalization begin date
 #'@param max_d the largest number of hospitalization in each segment
@@ -55,8 +55,8 @@ cox_breslow_dep <- function(hosp_begin, max_d, t_start, t_end, z, Z_tv, t_tv, ma
 #' created on 12/11/2021: this one use stratified model
 NULL
 
-compute_facility_idx <- function(facility, num_facility) {
-    .Call('_tdrecur_compute_facility_idx', PACKAGE = 'tdrecur', facility, num_facility)
+compute_facility_idx_ind <- function(facility, num_facility) {
+    .Call('_tdrecur_compute_facility_idx_ind', PACKAGE = 'tdrecur', facility, num_facility)
 }
 
 #' this function calculates Sm (1 by p), sum of z in event set; O, the vector of total events in each
@@ -65,8 +65,8 @@ compute_facility_idx <- function(facility, num_facility) {
 #'@param max_d the largest number of hospitalization in each segment
 #'@param D number of distinct failure time number of days)
 #'@param z time-independent variables
-compute_d12 <- function(hosp_begin, max_d, D, z, facility, num_facility) {
-    .Call('_tdrecur_compute_d12', PACKAGE = 'tdrecur', hosp_begin, max_d, D, z, facility, num_facility)
+compute_d <- function(hosp_begin, max_d, D, z, facility, num_facility) {
+    .Call('_tdrecur_compute_d', PACKAGE = 'tdrecur', hosp_begin, max_d, D, z, facility, num_facility)
 }
 
 #'@param l log partial likelihood
@@ -76,16 +76,16 @@ compute_d12 <- function(hosp_begin, max_d, D, z, facility, num_facility) {
 #'@param Sm p by 1 vector
 #'@param ym number of changes on each day
 #'@param exp_z_beta vector of exp(zi * beta + alphai), length N, with repeated KECC_ID
-ddloglik_cpp6 <- function(L1, L2, S0, t_start, t_end, Sm, events_per_day_facility, exp_z_beta, z, beta, facility_idx) {
-    invisible(.Call('_tdrecur_ddloglik_cpp6', PACKAGE = 'tdrecur', L1, L2, S0, t_start, t_end, Sm, events_per_day_facility, exp_z_beta, z, beta, facility_idx))
+ddloglik_cpp <- function(L1, L2, S0, t_start, t_end, Sm, events_per_day_facility, exp_z_beta, z, beta, facility_idx) {
+    invisible(.Call('_tdrecur_ddloglik_cpp', PACKAGE = 'tdrecur', L1, L2, S0, t_start, t_end, Sm, events_per_day_facility, exp_z_beta, z, beta, facility_idx))
 }
 
 #'@param alpha facility effect for each person, length-N vector
 #'@param alpha_star facility effect for each facility, length-num_facility vector
 #'@param num_events total number of events
 #'@param O number of events by facility
-update_beta <- function(L1, L2, S0, Sm, t_start, t_end, events_per_day_facility, exp_z_beta0, z, beta, update, z_beta, facility, num_facility, D, N, facility_idx) {
-    invisible(.Call('_tdrecur_update_beta', PACKAGE = 'tdrecur', L1, L2, S0, Sm, t_start, t_end, events_per_day_facility, exp_z_beta0, z, beta, update, z_beta, facility, num_facility, D, N, facility_idx))
+update_beta_ind <- function(L1, L2, S0, Sm, t_start, t_end, events_per_day_facility, exp_z_beta0, z, beta, update, z_beta, facility, num_facility, D, N, facility_idx) {
+    invisible(.Call('_tdrecur_update_beta_ind', PACKAGE = 'tdrecur', L1, L2, S0, Sm, t_start, t_end, events_per_day_facility, exp_z_beta0, z, beta, update, z_beta, facility, num_facility, D, N, facility_idx))
 }
 
 #'@param l log partial likelihood

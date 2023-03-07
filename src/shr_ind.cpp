@@ -478,7 +478,7 @@ int num_facility, int D, arma::colvec beta){
     int iter = 0;
     NumericMatrix Epre(num_facility, D + 1);
 
-    //cout<<"this is shr12"<<endl;
+    //Rcout<<"this is shr12"<<endl;
     while ((abs(update).max() > tolb) & (iter < maxiter)) {
 
         update_beta_ind(L1, L2,
@@ -489,9 +489,9 @@ int num_facility, int D, arma::colvec beta){
         iter += 1;
     }
     if(iter == maxiter){
-    	cout<<"Maximum number of iterations reached for beta!"<<endl;
+    	Rcout<<"Maximum number of iterations reached for beta!"<<endl;
     }
-    //cout<<"number of iterations for beta: "<<iter<<endl;
+    //Rcout<<"number of iterations for beta: "<<iter<<endl;
 
     arma::mat Ui = ddloglik_Ui(L1, L2, S0, t_start, t_end, Sm, events_per_day_facility,
         exp_z_beta0, z, beta, facility_idx, hosp_begin, max_d);
@@ -513,9 +513,9 @@ int num_facility, int D, arma::colvec beta){
         iter += 1;
     }
     if(iter == maxiter){
-    	cout<<"Maximum number of iterations reached for alpha!"<<endl;
+    	Rcout<<"Maximum number of iterations reached for alpha!"<<endl;
     }
-    //cout<<"number of iterations for alpha: "<<iter<<endl;
+    //Rcout<<"number of iterations for alpha: "<<iter<<endl;
 
     return List::create(Named("beta") = wrap(beta),
                         Named("update") = wrap(update),

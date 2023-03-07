@@ -118,21 +118,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// compute_facility_idx
-List compute_facility_idx(IntegerVector& facility, int num_facility);
-RcppExport SEXP _tdrecur_compute_facility_idx(SEXP facilitySEXP, SEXP num_facilitySEXP) {
+// compute_facility_idx_ind
+List compute_facility_idx_ind(IntegerVector& facility, int num_facility);
+RcppExport SEXP _tdrecur_compute_facility_idx_ind(SEXP facilitySEXP, SEXP num_facilitySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< IntegerVector& >::type facility(facilitySEXP);
     Rcpp::traits::input_parameter< int >::type num_facility(num_facilitySEXP);
-    rcpp_result_gen = Rcpp::wrap(compute_facility_idx(facility, num_facility));
+    rcpp_result_gen = Rcpp::wrap(compute_facility_idx_ind(facility, num_facility));
     return rcpp_result_gen;
 END_RCPP
 }
-// compute_d12
-List compute_d12(NumericMatrix& hosp_begin, IntegerVector& max_d, int D, NumericMatrix& z, IntegerVector& facility, int num_facility);
-RcppExport SEXP _tdrecur_compute_d12(SEXP hosp_beginSEXP, SEXP max_dSEXP, SEXP DSEXP, SEXP zSEXP, SEXP facilitySEXP, SEXP num_facilitySEXP) {
+// compute_d
+List compute_d(NumericMatrix& hosp_begin, IntegerVector& max_d, int D, NumericMatrix& z, IntegerVector& facility, int num_facility);
+RcppExport SEXP _tdrecur_compute_d(SEXP hosp_beginSEXP, SEXP max_dSEXP, SEXP DSEXP, SEXP zSEXP, SEXP facilitySEXP, SEXP num_facilitySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -142,13 +142,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericMatrix& >::type z(zSEXP);
     Rcpp::traits::input_parameter< IntegerVector& >::type facility(facilitySEXP);
     Rcpp::traits::input_parameter< int >::type num_facility(num_facilitySEXP);
-    rcpp_result_gen = Rcpp::wrap(compute_d12(hosp_begin, max_d, D, z, facility, num_facility));
+    rcpp_result_gen = Rcpp::wrap(compute_d(hosp_begin, max_d, D, z, facility, num_facility));
     return rcpp_result_gen;
 END_RCPP
 }
-// ddloglik_cpp6
-void ddloglik_cpp6(NumericVector& L1, NumericMatrix& L2, NumericVector& S0, IntegerVector& t_start, IntegerVector& t_end, NumericVector& Sm, IntegerMatrix events_per_day_facility, NumericVector& exp_z_beta, NumericMatrix& z, arma::colvec& beta, List facility_idx);
-RcppExport SEXP _tdrecur_ddloglik_cpp6(SEXP L1SEXP, SEXP L2SEXP, SEXP S0SEXP, SEXP t_startSEXP, SEXP t_endSEXP, SEXP SmSEXP, SEXP events_per_day_facilitySEXP, SEXP exp_z_betaSEXP, SEXP zSEXP, SEXP betaSEXP, SEXP facility_idxSEXP) {
+// ddloglik_cpp
+void ddloglik_cpp(NumericVector& L1, NumericMatrix& L2, NumericVector& S0, IntegerVector& t_start, IntegerVector& t_end, NumericVector& Sm, IntegerMatrix events_per_day_facility, NumericVector& exp_z_beta, NumericMatrix& z, arma::colvec& beta, List facility_idx);
+RcppExport SEXP _tdrecur_ddloglik_cpp(SEXP L1SEXP, SEXP L2SEXP, SEXP S0SEXP, SEXP t_startSEXP, SEXP t_endSEXP, SEXP SmSEXP, SEXP events_per_day_facilitySEXP, SEXP exp_z_betaSEXP, SEXP zSEXP, SEXP betaSEXP, SEXP facility_idxSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector& >::type L1(L1SEXP);
@@ -162,13 +162,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericMatrix& >::type z(zSEXP);
     Rcpp::traits::input_parameter< arma::colvec& >::type beta(betaSEXP);
     Rcpp::traits::input_parameter< List >::type facility_idx(facility_idxSEXP);
-    ddloglik_cpp6(L1, L2, S0, t_start, t_end, Sm, events_per_day_facility, exp_z_beta, z, beta, facility_idx);
+    ddloglik_cpp(L1, L2, S0, t_start, t_end, Sm, events_per_day_facility, exp_z_beta, z, beta, facility_idx);
     return R_NilValue;
 END_RCPP
 }
-// update_beta
-void update_beta(NumericVector& L1, NumericMatrix& L2, NumericVector& S0, NumericVector& Sm, IntegerVector& t_start, IntegerVector& t_end, IntegerMatrix events_per_day_facility, NumericVector& exp_z_beta0, NumericMatrix& z, arma::colvec& beta, arma::colvec& update, arma::colvec& z_beta, IntegerVector& facility, int num_facility, int D, int N, List facility_idx);
-RcppExport SEXP _tdrecur_update_beta(SEXP L1SEXP, SEXP L2SEXP, SEXP S0SEXP, SEXP SmSEXP, SEXP t_startSEXP, SEXP t_endSEXP, SEXP events_per_day_facilitySEXP, SEXP exp_z_beta0SEXP, SEXP zSEXP, SEXP betaSEXP, SEXP updateSEXP, SEXP z_betaSEXP, SEXP facilitySEXP, SEXP num_facilitySEXP, SEXP DSEXP, SEXP NSEXP, SEXP facility_idxSEXP) {
+// update_beta_ind
+void update_beta_ind(NumericVector& L1, NumericMatrix& L2, NumericVector& S0, NumericVector& Sm, IntegerVector& t_start, IntegerVector& t_end, IntegerMatrix events_per_day_facility, NumericVector& exp_z_beta0, NumericMatrix& z, arma::colvec& beta, arma::colvec& update, arma::colvec& z_beta, IntegerVector& facility, int num_facility, int D, int N, List facility_idx);
+RcppExport SEXP _tdrecur_update_beta_ind(SEXP L1SEXP, SEXP L2SEXP, SEXP S0SEXP, SEXP SmSEXP, SEXP t_startSEXP, SEXP t_endSEXP, SEXP events_per_day_facilitySEXP, SEXP exp_z_beta0SEXP, SEXP zSEXP, SEXP betaSEXP, SEXP updateSEXP, SEXP z_betaSEXP, SEXP facilitySEXP, SEXP num_facilitySEXP, SEXP DSEXP, SEXP NSEXP, SEXP facility_idxSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector& >::type L1(L1SEXP);
@@ -188,7 +188,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type D(DSEXP);
     Rcpp::traits::input_parameter< int >::type N(NSEXP);
     Rcpp::traits::input_parameter< List >::type facility_idx(facility_idxSEXP);
-    update_beta(L1, L2, S0, Sm, t_start, t_end, events_per_day_facility, exp_z_beta0, z, beta, update, z_beta, facility, num_facility, D, N, facility_idx);
+    update_beta_ind(L1, L2, S0, Sm, t_start, t_end, events_per_day_facility, exp_z_beta0, z, beta, update, z_beta, facility, num_facility, D, N, facility_idx);
     return R_NilValue;
 END_RCPP
 }
@@ -282,10 +282,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_tdrecur_ddloglik_cpp6", (DL_FUNC) &_tdrecur_ddloglik_cpp6, 17},
     {"_tdrecur_update_beta", (DL_FUNC) &_tdrecur_update_beta, 17},
     {"_tdrecur_cox_breslow_dep", (DL_FUNC) &_tdrecur_cox_breslow_dep, 15},
-    {"_tdrecur_compute_facility_idx", (DL_FUNC) &_tdrecur_compute_facility_idx, 2},
-    {"_tdrecur_compute_d12", (DL_FUNC) &_tdrecur_compute_d12, 6},
-    {"_tdrecur_ddloglik_cpp6", (DL_FUNC) &_tdrecur_ddloglik_cpp6, 11},
-    {"_tdrecur_update_beta", (DL_FUNC) &_tdrecur_update_beta, 17},
+    {"_tdrecur_compute_facility_idx_ind", (DL_FUNC) &_tdrecur_compute_facility_idx_ind, 2},
+    {"_tdrecur_compute_d", (DL_FUNC) &_tdrecur_compute_d, 6},
+    {"_tdrecur_ddloglik_cpp", (DL_FUNC) &_tdrecur_ddloglik_cpp, 11},
+    {"_tdrecur_update_beta_ind", (DL_FUNC) &_tdrecur_update_beta_ind, 17},
     {"_tdrecur_ddloglik_Ui", (DL_FUNC) &_tdrecur_ddloglik_Ui, 13},
     {"_tdrecur_ddloglik_cpp11", (DL_FUNC) &_tdrecur_ddloglik_cpp11, 4},
     {"_tdrecur_update_alpha11", (DL_FUNC) &_tdrecur_update_alpha11, 17},

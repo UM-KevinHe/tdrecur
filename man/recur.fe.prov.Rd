@@ -4,11 +4,26 @@
 \alias{recur.fe.prov}
 \title{Fit Recurrent Events Model}
 \usage{
-recur.fe.prov(data, T1.char, T2.char, event.char, id.char, nevents.char,
-  Zti.char, Ztd.char = NULL, ttd.char = NULL, prov.char,
-  tolb = 1e-06, tola = 1e-06, bound = 10, max.iter = 10000,
-  backtrack = FALSE, TimeDepen = TRUE, parallel = FALSE,
-  AUC = FALSE)
+recur.fe.prov(
+  data,
+  T1.char,
+  T2.char,
+  event.char,
+  id.char,
+  nevents.char,
+  Zti.char,
+  Ztd.char = NULL,
+  ttd.char = NULL,
+  prov.char,
+  tolb = 1e-06,
+  tola = 1e-06,
+  bound = 10,
+  max.iter = 10000,
+  backtrack = FALSE,
+  TimeDepen = TRUE,
+  parallel = FALSE,
+  AUC = FALSE
+)
 }
 \arguments{
 \item{data}{a data frame including response, provider ID, and covariates, with missing values imputed}

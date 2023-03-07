@@ -4,11 +4,19 @@
 \alias{generate_data}
 \title{Generate Data with Time-independent Covariates}
 \usage{
-generate_data(true_beta = c(c(0.5, -0.5, 1, -1, 1.5), rep(0, 5)),
-  F_pre = 1:10, gamma = rep(1, 10), dmu0 = 0.002, ndays = 200,
-  seed = 23021619, mean_sample_size = 50, Sigma_z1 = 0.1 *
-  diag(length(true_beta)), censoring_up_bound = 30,
-  censoring_trunc = 3, order = T)
+generate_data(
+  true_beta = c(c(0.5, -0.5, 1, -1, 1.5), rep(0, 5)),
+  F_pre = 1:10,
+  gamma = rep(1, 10),
+  dmu0 = 0.002,
+  ndays = 200,
+  seed = 23021619,
+  mean_sample_size = 50,
+  Sigma_z1 = 0.1 * diag(length(true_beta)),
+  censoring_up_bound = 30,
+  censoring_trunc = 3,
+  time_depen = TRUE
+)
 }
 \arguments{
 \item{true_beta}{true parameters}
@@ -29,7 +37,7 @@ generate_data(true_beta = c(c(0.5, -0.5, 1, -1, 1.5), rep(0, 5)),
 
 \item{censoring_trunc}{maximum observation time}
 
-\item{order}{whether the output data should be ordered by time}
+\item{time_depen}{indicator of whether the dataset contains time-dependent covariates. This function generates 2 time-dependent covariates for now}
 }
 \value{
 a list of generated data:

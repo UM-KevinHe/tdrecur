@@ -4,10 +4,23 @@
 \alias{fe.data.prep}
 \title{Check Whether the Input is Valid}
 \usage{
-fe.data.prep(data, T1.char, T2.char, event.prefix = NULL,
-  event.num = NULL, event.char = NULL, nevents.char = NULL, Zti.char,
-  Ztd.char = NULL, ttd.char = NULL, prov.char, TD = TRUE,
-  threshold.cor = 0.9, cutoff = 10, check = FALSE)
+fe.data.prep(
+  data,
+  T1.char,
+  T2.char,
+  event.prefix = NULL,
+  event.num = NULL,
+  event.char = NULL,
+  nevents.char = NULL,
+  Zti.char,
+  Ztd.char = NULL,
+  ttd.char = NULL,
+  prov.char,
+  TD = TRUE,
+  threshold.cor = 0.9,
+  cutoff = 10,
+  check = FALSE
+)
 }
 \arguments{
 \item{data}{a data frame including response, provider ID, and covariates, with missing values imputed}
