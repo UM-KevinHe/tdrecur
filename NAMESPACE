@@ -3,6 +3,7 @@
 export(cox_breslow_dep)
 export(cox_breslow_ind)
 export(generate_data)
+importFrom(mvtnorm,rmvnorm)
 importFrom(stats,as.formula)
 importFrom(stats,complete.cases)
 importFrom(stats,lm)

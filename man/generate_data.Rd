@@ -13,8 +13,6 @@ generate_data(
   seed = 23021619,
   mean_sample_size = 50,
   Sigma_z1 = 0.1 * diag(length(true_beta)),
-  censoring_up_bound = 30,
-  censoring_trunc = 3,
   time_depen = TRUE
 )
 }
@@ -29,13 +27,11 @@ generate_data(
 
 \item{ndays}{number of days followed}
 
+\item{seed}{random seed}
+
 \item{mean_sample_size}{expected sample size of each facility (stratum), a scalar same in all facilities}
 
 \item{Sigma_z1}{Var-Cov matrix of design matrix}
-
-\item{censoring_up_bound}{maximum value that the censoring time can take}
-
-\item{censoring_trunc}{maximum observation time}
 
 \item{time_depen}{indicator of whether the dataset contains time-dependent covariates. This function generates 2 time-dependent covariates for now}
 }
