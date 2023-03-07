@@ -100,7 +100,8 @@ generate_data = function(true_beta = c(c(0.5, -0.5, 1, -1, 1.5), rep(0, 5)), F_p
   hosp_begin = NULL
   if(time_depen){
     while (sum(O == -1) > 0) {
-      exp_zbeta1 <- exp(z %*% truebeta + nh %*% truebeta + tempz1 * 1 + tempz2 * 1 + alpha_subject)
+      exp_zbeta1 <- exp(z[, 1:(p-2)] %*% true_beta[1:(p-2)] + tempz1 * true_beta[p-1] +
+                          tempz2 * true_beta[p] + alpha_subject)
       truelambda1 = dmu0 * exp_zbeta1
       U = runif(N, 0, 1)
       X = ceiling((-log(U) / (truelambda1))) + X
