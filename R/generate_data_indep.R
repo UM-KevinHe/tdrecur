@@ -10,8 +10,6 @@
 #'@param seed random seed
 #'@param mean_sample_size expected sample size of each facility (stratum), a scalar same in all facilities
 #'@param Sigma_z1 Var-Cov matrix of design matrix
-#'@param censoring_up_bound maximum value that the censoring time can take
-#'@param censoring_trunc maximum observation time
 #'@param time_depen indicator of whether the dataset contains time-dependent covariates. This function generates 2 time-dependent covariates for now
 #'
 #'@return a list of generated data:
@@ -35,8 +33,7 @@
 generate_data = function(true_beta = c(c(0.5, -0.5, 1, -1, 1.5), rep(0, 5)), F_pre = 1:10, gamma = rep(1, 10),
                          dmu0 = 0.002,
                          ndays = 200, seed = 23021619,
-                         mean_sample_size = 50, Sigma_z1 = 0.1 * diag(length(true_beta)), censoring_up_bound = 30,
-                         censoring_trunc = 3,
+                         mean_sample_size = 50, Sigma_z1 = 0.1 * diag(length(true_beta)),
                          time_depen = TRUE){
   f = length(F_pre)     # number of facilities
   p = length(true_beta)
