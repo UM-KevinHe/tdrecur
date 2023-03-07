@@ -2,6 +2,8 @@
 #'
 #'The function generate_data_indep generates example recurrent events data with time-independent covariates only
 #'
+#'@importFrom mvtnorm rmvnorm
+
 #'@param true_beta true parameters
 #'@param F_pre a unique list of facilities
 #'@param gamma true facility effects of each facility, notice length of gamma must be the same as length of F_pre
