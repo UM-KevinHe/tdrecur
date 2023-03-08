@@ -19,7 +19,9 @@ cox_breslow_dep(
   facility,
   num_facility,
   D,
-  beta
+  beta,
+  parallel = TRUE,
+  nthreads = 1L
 )
 }
 \arguments{

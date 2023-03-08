@@ -5,12 +5,11 @@ require(dplyr)
 
 ## simulation
 source("R/generate_data_indep.R")
-surv_dat = generate_data()
+surv_dat = generate_data(time_depen = F)
 
   p = 10
   # fixed-point -------------------------------------------------------------
 
-surv_dat$facility = surv_dat$facility-1
 
   require(Rcpp)
   sourceCpp("src/shr_ind.cpp")

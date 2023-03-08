@@ -6,7 +6,7 @@
 \usage{
 generate_data(
   true_beta = c(c(0.5, -0.5, 1, -1, 1.5), rep(0, 5)),
-  F_pre = 1:10,
+  F_pre = 0:9,
   gamma = rep(1, 10),
   dmu0 = 0.002,
   ndays = 200,

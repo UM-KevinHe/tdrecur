@@ -364,7 +364,7 @@ NumericVector& exp_z_beta){
 //'@param num_events total number of events
 //'@param O number of events by facility
 // [[Rcpp::export]]
-void update_alpha11(NumericVector &alpha,
+void update_alpha_ind(NumericVector &alpha,
 NumericVector &S0,
 IntegerVector &t_start, IntegerVector &t_end,
 IntegerVector dm,
@@ -505,7 +505,7 @@ int num_facility, int D, arma::colvec beta){
     iter = 0;
     while ((max(abs(diffalpha)) > tola) & (iter < maxiter)) {
 
-        update_alpha11(alpha,
+        update_alpha_ind(alpha,
         S0, t_start, t_end, dm,
         exp_z_beta, exp_z_beta0,
         diffalpha, alpha_star, facility, num_facility,

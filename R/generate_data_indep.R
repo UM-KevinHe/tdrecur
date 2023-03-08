@@ -32,7 +32,7 @@
 #'@export
 #'
 
-generate_data = function(true_beta = c(c(0.5, -0.5, 1, -1, 1.5), rep(0, 5)), F_pre = 1:10, gamma = rep(1, 10),
+generate_data = function(true_beta = c(c(0.5, -0.5, 1, -1, 1.5), rep(0, 5)), F_pre = 0:9, gamma = rep(1, 10),
                          dmu0 = 0.002,
                          ndays = 200, seed = 23021619,
                          mean_sample_size = 50, Sigma_z1 = 0.1 * diag(length(true_beta)),
@@ -134,8 +134,13 @@ generate_data = function(true_beta = c(c(0.5, -0.5, 1, -1, 1.5), rep(0, 5)), F_p
   summary(hosp_begin)
 
 
+  if(time_depen){
+    simdata = list(z = z[, 1:(p-2)], Z_tv = Z_tv, t_tv = t_tv, facility = facility, num_facility = f, true_beta = true_beta, t_start = T1,
+                   t_end = Tex, events_time = hosp_begin, nevents = O, ndays = ndays, N = N)
+  }else{
+    simdata = list(z = z, facility = facility, num_facility = f, true_beta = true_beta, t_start = T1,
+                   t_end = Tex, events_time = hosp_begin, nevents = O, ndays = ndays, N = N)
+  }
 
-  simdata = list(z = z, facility = facility, num_facility = f, true_beta = true_beta, t_start = T1,
-                 t_end = Tex, events_time = hosp_begin, nevents = O, ndays = ndays, N = N)
   return(simdata)
 }
