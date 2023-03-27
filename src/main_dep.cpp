@@ -178,7 +178,7 @@ arma::mat &z, arma::cube &Z_tv, arma::cube &t_tv,
 arma::mat &max_v,  double tolb, double tola, int maxiter, arma::colvec &facility,
 int num_facility, int D, arma::colvec beta,
 bool parallel = true, const unsigned int &nthreads=1){
-    Rcout<<"this is shr14"<<endl;
+
     int p1 = z.n_cols;
     int p2 = Z_tv.n_slices;
     int p = p1 + p2;
@@ -271,7 +271,7 @@ bool parallel = true, const unsigned int &nthreads=1){
         );
         iter += 1;
     }
-    cout<<"number of iterations for alpha: "<<iter<<endl;
+    Rcout<<"number of iterations for alpha: "<<iter<<endl;
 
     return List::create(Named("beta") = wrap(beta),
                         Named("update") = wrap(update),
