@@ -135,7 +135,8 @@ generate_data = function(true_beta = c(c(0.5, -0.5, 1, -1, 1.5), rep(0, 5)), F_p
 
 
   if(time_depen){
-    simdata = list(z = z[, 1:(p-2)], Z_tv = Z_tv, t_tv = t_tv, facility = facility, num_facility = f, true_beta = true_beta, t_start = T1,
+    simdata = list(z = z[, 1:(p-2)], Z_tv = Z_tv, t_tv = t_tv, max_v = max_v, facility = facility, num_facility = f,
+                   true_beta = true_beta, t_start = T1,
                    t_end = Tex, events_time = hosp_begin, nevents = O, ndays = ndays, N = N)
   }else{
     simdata = list(z = z, facility = facility, num_facility = f, true_beta = true_beta, t_start = T1,

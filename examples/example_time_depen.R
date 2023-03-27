@@ -5,7 +5,7 @@ require(mvtnorm) # used in simulating z
 require(survival)
 require(dplyr)
 
-source("R/generate_data_indep.R")
+source("R/generate_data.R")
 surv_dat_dep = generate_data()
 
 
@@ -13,14 +13,8 @@ surv_dat_dep = generate_data()
 
 require(Rcpp)
 sourceCpp("src/main_dep.cpp")
-facility_result = compute_facility_idx(surv_dat_dep$facility, surv_dat_dep$f)
-dresult = compute_d12(hosp_begin, max_d = O, D = ndays, z, Z_tv, t_tv, max_v,
-                      id, facility, num_facility = f)
-pp = p + 2
-ddloglik_cpp6(L1 = rep(0, pp), L2 = matrix(0, pp, pp), t_start = T1+1, t_end = Tex,
-              dresult$Sm, dresult$events_per_day_facility, id,
-              z, Z_tv, t_tv, max_v, rep(0, pp), N, facility_result)
-Cresult14 = cox_breslow_shr12(hosp_begin, max_d = O, t_start = T1+1, t_end = Tex, z, Z_tv, t_tv, max_v,
-                            1e-6, 1e-6, 20,
-                            facility, num_facility = f, D = ndays, beta = rep(0, p + 2))#, nthreads = 2)
+
+Cresult14 = cox_breslow_dep(surv_dat$events_time, surv_dat$nevents, surv_dat$t_start+1, surv_dat$t_end,
+                            surv_dat$z, surv_dat$Z_tv, surv_dat$t_tv, surv_dat$, 1.0e-6, 1.0e-6,
+                            20, surv_dat$facility, surv_dat$num_facility, surv_dat$ndays, beta = rep(0, p))
 
