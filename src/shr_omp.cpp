@@ -29,11 +29,12 @@ arma::mat &z, arma::cube &Z_tv, arma::cube &t_tv, arma::mat &max_v,
     int num_events = 0;
     arma::mat events_per_day_facility(num_facility, D);
     arma::colvec events_per_day(D);
+    omp_set_num_threads(nthreads);
 #pragma omp parallel
 {
   arma::rowvec local_Sm(p);
   arma::colvec local_events_per_facility(num_facility);
-  arma::colvec local_events_per_day_facility(num_facility, D);
+  arma::mat local_events_per_day_facility(num_facility, D);
   int local_num_events = 0;
   arma::colvec local_events_per_day(D);
   arma::mat tempz, tempt;
@@ -134,7 +135,6 @@ omp_set_num_threads(nthreads);
 #pragma omp for schedule(guided)
 	// i for patients, j, s for covariates, k for time
   for (int k = 0; k < D; k++) { // for time
-  	cout<<"k = "<<k<<endl;
 
     zt.fill(0);
     for (int s = 0; s < p2; s++) { // for covariates

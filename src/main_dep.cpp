@@ -206,7 +206,7 @@ bool parallel = true, const unsigned int &nthreads=1){
     arma::colvec update1 = arma::ones<arma::colvec>(p);
     arma::colvec update_rel = arma::ones<arma::colvec>(p);
 
-    double l;
+    double l = 0.0;
     double l1;
     double lchange = 1.0;
     double lchange_rel = 1.0;

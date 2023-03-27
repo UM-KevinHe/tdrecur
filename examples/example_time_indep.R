@@ -4,7 +4,7 @@ require(Rcpp)
 require(dplyr)
 
 ## simulation
-source("R/generate_data_indep.R")
+source("R/generate_data.R")
 surv_dat = generate_data(time_depen = F)
 
   p = 10
