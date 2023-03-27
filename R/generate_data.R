@@ -1,6 +1,6 @@
 #'Generate Data with Time-independent Covariates
 #'
-#'The function generate_data_indep generates example recurrent events data with time-independent covariates only
+#'The function generate_data generates example recurrent events data
 #'
 #'@importFrom mvtnorm rmvnorm
 
