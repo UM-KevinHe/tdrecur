@@ -27,6 +27,7 @@ arma::mat &z, arma::cube &Z_tv, arma::cube &t_tv, arma::mat &max_v,
     int num_events = 0;
     arma::mat events_per_day_facility(num_facility, D);
     arma::colvec events_per_day(D);
+    arma::colvec events_per_facility(num_facility);
     arma::mat tempz, tempt;
     // i for patients, s for parameters
     for(int i = 0; i < N; i ++){
@@ -39,7 +40,6 @@ arma::mat &z, arma::cube &Z_tv, arma::cube &t_tv, arma::mat &max_v,
 
     	  for (int j = 0; j < max_d(i); j ++ ){
     	  	  events_per_day_facility(facility(i), hosp_begin(i, j) - 1) += 1;
-    	  	  events_per_day(hosp_begin(i, j) - 1) += 1;
             for (int s = 0; s < p2; s++) {
               tempz = Z_tv.slice(s);
               tempt = t_tv.slice(s);
@@ -57,9 +57,16 @@ arma::mat &z, arma::cube &Z_tv, arma::cube &t_tv, arma::mat &max_v,
     	  }
     	}
     }
+    for (int j = 0; j < num_facility; j ++){
+      for(int k = 0; k < D; k ++){
+        events_per_facility(j) += events_per_day_facility(j, k);
+        events_per_day(k) += events_per_day_facility(j, k);
+      }
+    }
     return List::create(Named("Sm") = Sm,
     	Named("events_per_day_facility") = events_per_day_facility,
     	Named("events_per_day") = events_per_day,
+    	Named("events_per_facility") = events_per_facility,
     	Named("O") = O,
     	Named("num_events") = num_events);
 }
@@ -193,14 +200,14 @@ void ddloglik_cpp14(arma::colvec &alpha,
   int p2 = Z_tv.n_slices;
   int p = p1 + p2;
 
-  
+
   arma::mat zt = arma::zeros<arma::mat>(N, p2);
   arma::mat tempz, tempt;
   double exp_z_beta;
   arma::colvec zvi_beta =
     z * beta.rows(0, p1 - 1); // zbeta for variables that are time-independent
   arma::mat zti_beta(1, 1); // zbeta for time t, patient i
-  
+
   // i for patients, s for covariates, t for change point, j for time
 
   for (int j = 0; j < D; j++) { // for time
