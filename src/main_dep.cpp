@@ -79,6 +79,7 @@ arma::colvec &update, arma::colvec &update_rel, List facility_idx,
 
 
 //'@param alpha facility effect for each person, length-N vector
+//'@param exp_z_beta0 exp(zbeta) for each patient each day
 //'@param alpha_star facility effect for each facility, length-num_facility vector
 //'@param num_events total number of events
 //'@param events_per_facility number of events by facility
@@ -96,7 +97,7 @@ int D, arma::colvec &lambda, int num_events, arma::colvec &events_per_facility, 
 arma::mat &Epre, arma::mat &hosp_begin, arma::colvec &max_d, bool parallel = true, const unsigned int &nthreads=1){
 
 
-        // first step: update S0
+        // first step: update S0 and exp_z_beta0
         if(parallel){
         ddloglik_all_omp(alpha,
                    t_start, t_end,

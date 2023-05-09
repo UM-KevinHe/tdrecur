@@ -17,6 +17,7 @@ update_beta <- function(l, lchange, L1, L2, Sm, t_start, t_end, events_per_day_f
 }
 
 #'@param alpha facility effect for each person, length-N vector
+#'@param exp_z_beta0 exp(zbeta) for each patient each day
 #'@param alpha_star facility effect for each facility, length-num_facility vector
 #'@param num_events total number of events
 #'@param events_per_facility number of events by facility
