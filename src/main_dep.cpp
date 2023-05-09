@@ -278,7 +278,7 @@ bool parallel = true, const unsigned int &nthreads=1){
                         Named("update") = wrap(update),
                         //Named("sebeta") = wrap(sqrt(varbeta)),
                         //Named("sansebeta") = wrap(sqrt(sanvarbeta)),
-                        //Named("exp_z_beta0") = wrap(exp_z_beta0),
+                        Named("exp_z_beta0") = wrap(exp_z_beta0),
                         //Named("z_value") = wrap(z_value),
                         Named("L1") = L1,
                         Named("Info") = L2,
